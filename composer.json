@@ -1,0 +1,18 @@
+{
+    "name": "wieni/wmcontroller_redis",
+    "description": "A Redis storage for WmController",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Wieni",
+            "email": "info@wieni.be"
+        }
+    ],
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "type": "drupal-module",
+    "require": {
+        "drupal/redis": "^1.1",
+        "wieni/wmcontroller": "0.8.*"
+    }
+}

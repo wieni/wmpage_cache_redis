@@ -1,0 +1,18 @@
+parameters:
+    wmcontroller.cache.redis.prefix: 'wmcontroller:'
+
+services:
+    wmcontroller.redis.factory:
+        class: Drupal\wmcontroller_redis\RedisClientFactory
+
+    wmcontroller.redis.internal.serializer:
+        class: Drupal\wmcontroller_redis\Serializer
+        arguments:
+            - '@wmcontroller.cache.serializer'
+
+    wmcontroller.cache.storage.redis:
+        class: Drupal\wmcontroller_redis\Storage\RedisStorage
+        arguments:
+            - '@wmcontroller.redis.factory'
+            - '@wmcontroller.redis.internal.serializer'
+            - '%wmcontroller.cache.redis.prefix%'
