@@ -56,11 +56,9 @@ class RedisStorage implements StorageInterface
         $time = time();
 
         foreach (array_chunk($ids, 50) as $chunk) {
-            if ($includeBody) {
-                $rows = $this->redis->mget($this->prefix($chunk, 'body'));
-            } else {
-                $rows = $this->redis->mget($this->prefix($chunk));
-            }
+            $rows = $this->redis->mget(
+                $this->prefix($chunk, $includeBody ? 'body' : '')
+            );
 
             foreach (array_filter($rows) as $row) {
                 $item = $this->serializer->denormalize($row);
