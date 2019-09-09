@@ -190,12 +190,7 @@ class RedisStorage implements StorageInterface
             return;
         }
 
-        // Todo: isn't this going to go OOM?
-        $this->redis->del(
-            $this->redis->keys(
-                $this->prefix('*')
-            )
-        );
+        $this->redis->flushDB();
     }
 
     private function prefix($string, $prefix = '')
