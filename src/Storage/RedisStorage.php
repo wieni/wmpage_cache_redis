@@ -24,6 +24,11 @@ class RedisStorage implements StorageInterface
     ) {
         try {
             $this->redis = $clientFactory::getClient();
+            if (!$this->redis instanceof Redis) {
+                throw new \RuntimeException(
+                    'RedisClientFactory did not return a Redis instance. Silently failing...'
+                );
+            }
         } catch (\Exception $e) {
             $this->redis = null;
             watchdog_exception('wmcontroller.redis', $e);
@@ -45,7 +50,7 @@ class RedisStorage implements StorageInterface
     public function loadMultiple(array $ids, $includeBody = true): \Iterator
     {
         if (!$this->redis) {
-            return;
+            return [];
         }
 
         $time = time();
@@ -167,7 +172,7 @@ class RedisStorage implements StorageInterface
     public function getExpired($amount)
     {
         if (!$this->redis) {
-            return;
+            return [];
         }
         $ids = $this->redis->zRangeByScore(
             $this->prefix('expiries'),
