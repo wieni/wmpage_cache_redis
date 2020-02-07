@@ -18,6 +18,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 - Update readme
 - Update module description
+- Update wmcontroller version constraint
 
 ## [0.8.1] - 2019-02-22
 ### Fixed
