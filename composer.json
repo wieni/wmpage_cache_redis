@@ -13,6 +13,6 @@
     "type": "drupal-module",
     "require": {
         "drupal/redis": "^1.1",
-        "wieni/wmcontroller": "0.8.*"
+        "wieni/wmcontroller": ">=0.8 <0.10"
     }
 }
