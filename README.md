@@ -1,26 +1,44 @@
-# Redis storage for WmController
+wmcontroller_redis
+======================
 
-This is a Redis storage for [wieni/wmcontroller](https://github.com/wieni/wmcontroller)
+[![Latest Stable Version](https://poser.pugx.org/wieni/wmcontroller_redis/v/stable)](https://packagist.org/packages/wieni/wmcontroller_redis)
+[![Total Downloads](https://poser.pugx.org/wieni/wmcontroller_redis/downloads)](https://packagist.org/packages/wieni/wmcontroller_redis)
+[![License](https://poser.pugx.org/wieni/wmcontroller_redis/license)](https://packagist.org/packages/wieni/wmcontroller_redis)
+
+> A Redis cache storage for [wieni/wmcontroller](https://github.com/wieni/wmcontroller)
 
 ## Installation
 
-It currently only supports `PhpRedis`.
+This package requires PHP 7.1, PhpRedis and Drupal 8 or higher. It can be
+installed using Composer:
 
 ```bash
-composer require wieni/wmcontroller_redis
-drush en wmcontroller_redis
+ composer require wieni/wmcontent
 ```
 
+To enable this cache storage, change the `wmcontroller.cache.storage` container parameter:
 ```yaml
-// services.yml
 parameters:
     wmcontroller.cache.storage: wmcontroller.cache.storage.redis
 
     wmcontroller.cache.redis.prefix: 'wmcontroller:'
 ```
 
+Make sure to also set the host & base in `settings.php`.
 ```php
-// settings.php
 $settings['wmcontroller.redis.connection']['host'] = '127.0.0.1';
 $settings['wmcontroller.redis.connection']['base'] = '0';
 ```
+
+## Changelog
+All notable changes to this project will be documented in the
+[CHANGELOG](CHANGELOG.md) file.
+
+## Security
+If you discover any security-related issues, please email
+[security@wieni.be](mailto:security@wieni.be) instead of using the issue
+tracker.
+
+## License
+Distributed under the MIT License. See the [LICENSE](LICENSE.md) file
+for more information.

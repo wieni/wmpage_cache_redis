@@ -1,6 +1,7 @@
 {
     "name": "wieni/wmcontroller_redis",
-    "description": "A Redis storage for WmController",
+    "type": "drupal-module",
+    "description": "A Redis cache storage for wieni/wmcontroller",
     "license": "MIT",
     "authors": [
         {
@@ -8,11 +9,28 @@
             "email": "info@wieni.be"
         }
     ],
-    "minimum-stability": "dev",
-    "prefer-stable": true,
-    "type": "drupal-module",
     "require": {
+        "php": ">=7.1.0",
+        "drupal/core": "^8.0",
         "drupal/redis": "^1.1",
         "wieni/wmcontroller": ">=0.8 <0.10"
+    },
+    "require-dev": {
+        "ergebnis/composer-normalize": "^2.0",
+        "wieni/wmcodestyle": "^1.0"
+    },
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://packages.drupal.org/8"
+        }
+    ],
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "scripts": {
+        "coding-standards": [
+            "@composer normalize",
+            "php-cs-fixer fix --config=.php_cs.php"
+        ]
     }
 }
