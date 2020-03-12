@@ -13,7 +13,7 @@ This package requires PHP 7.1, PhpRedis and Drupal 8 or higher. It can be
 installed using Composer:
 
 ```bash
- composer require wieni/wmcontent
+ composer require wieni/wmcontroller_redis
 ```
 
 To enable this cache storage, change the `wmcontroller.cache.storage` container parameter:
