@@ -40,5 +40,5 @@ If you discover any security-related issues, please email
 tracker.
 
 ## License
-Distributed under the MIT License. See the [LICENSE](LICENSE.md) file
+Distributed under the MIT License. See the [LICENSE](LICENSE) file
 for more information.
