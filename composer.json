@@ -13,7 +13,7 @@
         "php": ">=7.1.0",
         "drupal/core": "^8.0",
         "drupal/redis": "^1.1",
-        "wieni/wmcontroller": ">=0.8 <0.10"
+        "wieni/wmcontroller": ">=0.8 <0.11"
     },
     "require-dev": {
         "ergebnis/composer-normalize": "^2.0",
