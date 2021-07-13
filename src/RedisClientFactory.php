@@ -3,6 +3,7 @@
 namespace Drupal\wmpage_cache_redis;
 
 use Drupal\Core\Site\Settings;
+use Drupal\redis\Client\PhpRedis;
 use Drupal\redis\ClientFactory;
 use Redis;
 
