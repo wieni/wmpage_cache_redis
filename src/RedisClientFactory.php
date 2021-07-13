@@ -3,15 +3,15 @@
 namespace Drupal\wmpage_cache_redis;
 
 use Drupal\Core\Site\Settings;
-use Drupal\redis\Client\PhpRedis;
 use Drupal\redis\ClientFactory;
+use Redis;
 
 class RedisClientFactory extends ClientFactory
 {
     /** @var PhpRedis */
     protected static $client;
 
-    public static function getClient(): ?PhpRedis
+    public static function getClient(): ?Redis
     {
         if (isset(static::$client)) {
             return static::$client;
