@@ -17,7 +17,7 @@ class RedisClientFactory extends ClientFactory
             return static::$client;
         }
 
-        $settings = Settings::get('wmcontroller.redis.connection', []);
+        $settings = Settings::get('wmpage_cache.redis.connection', []);
         $settings += [
             'host' => ClientFactory::REDIS_DEFAULT_HOST,
             'port' => ClientFactory::REDIS_DEFAULT_PORT,
@@ -33,7 +33,7 @@ class RedisClientFactory extends ClientFactory
                 $settings['password']
             );
         } catch (\Exception $e) {
-            watchdog_exception('wmcontroller.redis', $e);
+            watchdog_exception('wmpage_cache_redis', $e);
             return null;
         }
     }

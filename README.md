@@ -5,7 +5,7 @@ wmpage_cache_redis
 [![Total Downloads](https://poser.pugx.org/wieni/wmpage_cache_redis/downloads)](https://packagist.org/packages/wieni/wmpage_cache_redis)
 [![License](https://poser.pugx.org/wieni/wmpage_cache_redis/license)](https://packagist.org/packages/wieni/wmpage_cache_redis)
 
-> A Redis cache storage for [wieni/wmcontroller](https://github.com/wieni/wmcontroller)
+> A Redis cache storage for [wieni/wmpage_cache](https://github.com/wieni/wmpage_cache)
 
 ## Installation
 
@@ -21,13 +21,13 @@ To enable this cache storage, change the `wmpage_cache.storage` container parame
 parameters:
     wmpage_cache.storage: wmpage_cache.storage.redis
 
-    wmpage_cache.redis.prefix: 'wmcontroller:'
+    wmpage_cache.redis.prefix: 'wmpage_cache:'
 ```
 
 Make sure to also set the host & base in `settings.php`.
 ```php
-$settings['wmcontroller.redis.connection']['host'] = '127.0.0.1';
-$settings['wmcontroller.redis.connection']['base'] = '0';
+$settings['wmpage_cache.redis.connection']['host'] = '127.0.0.1';
+$settings['wmpage_cache.redis.connection']['base'] = '0';
 ```
 
 ## Changelog

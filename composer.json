@@ -1,7 +1,7 @@
 {
     "name": "wieni/wmpage_cache_redis",
     "type": "drupal-module",
-    "description": "A Redis cache storage for wieni/wmcontroller",
+    "description": "A Redis cache storage for wieni/wmpage_cache",
     "license": "MIT",
     "authors": [
         {
@@ -13,7 +13,7 @@
         "php": ">=7.1.0",
         "drupal/core": "^8.0 || ^9.0",
         "drupal/redis": "^1.3",
-        "wieni/wmcontroller": ">=0.8 <0.11"
+        "wieni/wmpage_cache": "dev-main"
     },
     "require-dev": {
         "ergebnis/composer-normalize": "^2.0",

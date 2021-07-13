@@ -31,7 +31,7 @@ class RedisStorage implements StorageInterface
             }
         } catch (\Exception $e) {
             $this->redis = null;
-            watchdog_exception('wmcontroller.redis', $e);
+            watchdog_exception('wmpage_cache_redis', $e);
         }
         $this->serializer = $serializer;
         $this->prefix = $prefix;
