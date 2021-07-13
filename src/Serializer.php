@@ -1,13 +1,13 @@
 <?php
 
-namespace Drupal\wmcontroller_redis;
+namespace Drupal\wmpage_cache_redis;
 
-use Drupal\wmcontroller\Entity\Cache;
-use Drupal\wmcontroller\Service\Cache\CacheSerializerInterface;
+use Drupal\wmpage_cache\Cache;
+use Drupal\wmpage_cache\CacheSerializerInterface;
 
 class Serializer implements CacheSerializerInterface
 {
-    /** @var \Drupal\wmcontroller\Service\Cache\CacheSerializerInterface */
+    /** @var CacheSerializerInterface */
     protected $serializer;
 
     public function __construct(CacheSerializerInterface $serializer)
@@ -15,14 +15,14 @@ class Serializer implements CacheSerializerInterface
         $this->serializer = $serializer;
     }
 
-    public function normalize(Cache $cache, $includeContent = true)
+    public function normalize(Cache $cache, $includeContent = true): ?string
     {
         return json_encode(
             $this->serializer->normalize($cache, $includeContent)
-        );
+        ) ?: null;
     }
 
-    public function denormalize($row)
+    public function denormalize($row): Cache
     {
         return $this->serializer->denormalize(json_decode($row, true));
     }

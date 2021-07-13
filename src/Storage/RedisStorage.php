@@ -1,19 +1,19 @@
 <?php
 
-namespace Drupal\wmcontroller_redis\Storage;
+namespace Drupal\wmpage_cache_redis\Storage;
 
-use Drupal\wmcontroller\Entity\Cache;
-use Drupal\wmcontroller\Exception\NoSuchCacheEntryException;
-use Drupal\wmcontroller\Service\Cache\CacheSerializerInterface;
-use Drupal\wmcontroller\Service\Cache\Storage\StorageInterface;
-use Drupal\wmcontroller_redis\RedisClientFactory;
+use Drupal\wmpage_cache\Cache;
+use Drupal\wmpage_cache\Exception\NoSuchCacheEntryException;
+use Drupal\wmpage_cache\CacheSerializerInterface;
+use Drupal\wmpage_cache\Storage\StorageInterface;
+use Drupal\wmpage_cache_redis\RedisClientFactory;
 use Redis;
 
 class RedisStorage implements StorageInterface
 {
     /** @var \Redis */
     protected $redis;
-    /** @var \Drupal\wmcontroller\Service\Cache\CacheSerializerInterface */
+    /** @var CacheSerializerInterface */
     protected $serializer;
     protected $prefix;
 
@@ -37,7 +37,7 @@ class RedisStorage implements StorageInterface
         $this->prefix = $prefix;
     }
 
-    public function load($id, $includeBody = true)
+    public function load($id, $includeBody = true): Cache
     {
         $item = $this->loadMultiple([$id], $includeBody)->current();
         if (!$item) {
@@ -69,7 +69,7 @@ class RedisStorage implements StorageInterface
         }
     }
 
-    public function set(Cache $item, array $tags)
+    public function set(Cache $item, array $tags): void
     {
         if (!$this->redis) {
             return;
@@ -116,7 +116,7 @@ class RedisStorage implements StorageInterface
         $tx->exec();
     }
 
-    public function getByTags(array $tags)
+    public function getByTags(array $tags): array
     {
         if (!$this->redis || !$tags) {
             return [];
@@ -139,7 +139,7 @@ class RedisStorage implements StorageInterface
         return array_keys($ids);
     }
 
-    public function remove(array $ids)
+    public function remove(array $ids): void
     {
         if (!$this->redis) {
             return;
@@ -167,7 +167,7 @@ class RedisStorage implements StorageInterface
         }
     }
 
-    public function getExpired($amount)
+    public function getExpired($amount): array
     {
         if (!$this->redis) {
             return [];
@@ -184,7 +184,7 @@ class RedisStorage implements StorageInterface
         return $ids;
     }
 
-    public function flush()
+    public function flush(): void
     {
         if (!$this->redis) {
             return;

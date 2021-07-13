@@ -1,0 +1,18 @@
+parameters:
+    wmpage_cache.redis.prefix: 'wmpage_cache:'
+
+services:
+    wmpage_cache.redis.factory:
+        class: Drupal\wmpage_cache_redis\RedisClientFactory
+
+    wmpage_cache.redis.internal.serializer:
+        class: Drupal\wmpage_cache_redis\Serializer
+        arguments:
+            - '@wmpage_cache.serializer'
+
+    wmpage_cache.storage.redis:
+        class: Drupal\wmpage_cache_redis\Storage\RedisStorage
+        arguments:
+            - '@wmpage_cache.redis.factory'
+            - '@wmpage_cache.redis.internal.serializer'
+            - '%wmpage_cache.redis.prefix%'

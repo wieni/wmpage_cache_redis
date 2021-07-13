@@ -1,9 +1,9 @@
-wmcontroller_redis
+wmpage_cache_redis
 ======================
 
-[![Latest Stable Version](https://poser.pugx.org/wieni/wmcontroller_redis/v/stable)](https://packagist.org/packages/wieni/wmcontroller_redis)
-[![Total Downloads](https://poser.pugx.org/wieni/wmcontroller_redis/downloads)](https://packagist.org/packages/wieni/wmcontroller_redis)
-[![License](https://poser.pugx.org/wieni/wmcontroller_redis/license)](https://packagist.org/packages/wieni/wmcontroller_redis)
+[![Latest Stable Version](https://poser.pugx.org/wieni/wmpage_cache_redis/v/stable)](https://packagist.org/packages/wieni/wmpage_cache_redis)
+[![Total Downloads](https://poser.pugx.org/wieni/wmpage_cache_redis/downloads)](https://packagist.org/packages/wieni/wmpage_cache_redis)
+[![License](https://poser.pugx.org/wieni/wmpage_cache_redis/license)](https://packagist.org/packages/wieni/wmpage_cache_redis)
 
 > A Redis cache storage for [wieni/wmcontroller](https://github.com/wieni/wmcontroller)
 
@@ -13,15 +13,15 @@ This package requires PHP 7.1, PhpRedis and Drupal 8 or higher. It can be
 installed using Composer:
 
 ```bash
- composer require wieni/wmcontroller_redis
+ composer require wieni/wmpage_cache_redis
 ```
 
-To enable this cache storage, change the `wmcontroller.cache.storage` container parameter:
+To enable this cache storage, change the `wmpage_cache.storage` container parameter:
 ```yaml
 parameters:
-    wmcontroller.cache.storage: wmcontroller.cache.storage.redis
+    wmpage_cache.storage: wmpage_cache.storage.redis
 
-    wmcontroller.cache.redis.prefix: 'wmcontroller:'
+    wmpage_cache.redis.prefix: 'wmcontroller:'
 ```
 
 Make sure to also set the host & base in `settings.php`.

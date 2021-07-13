@@ -1,5 +1,5 @@
 {
-    "name": "wieni/wmcontroller_redis",
+    "name": "wieni/wmpage_cache_redis",
     "type": "drupal-module",
     "description": "A Redis cache storage for wieni/wmcontroller",
     "license": "MIT",
