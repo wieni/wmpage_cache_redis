@@ -3,8 +3,8 @@
 namespace Drupal\wmpage_cache_redis\Storage;
 
 use Drupal\wmpage_cache\Cache;
-use Drupal\wmpage_cache\Exception\NoSuchCacheEntryException;
 use Drupal\wmpage_cache\CacheSerializerInterface;
+use Drupal\wmpage_cache\Exception\NoSuchCacheEntryException;
 use Drupal\wmpage_cache\Storage\StorageInterface;
 use Drupal\wmpage_cache_redis\RedisClientFactory;
 use Redis;
@@ -172,7 +172,8 @@ class RedisStorage implements StorageInterface
         if (!$this->redis) {
             return [];
         }
-        $ids = $this->redis->zRangeByScore(
+
+        return $this->redis->zRangeByScore(
             $this->prefix('expiries'),
             1,
             time(),
@@ -180,8 +181,6 @@ class RedisStorage implements StorageInterface
                 'limit' => [0, $amount],
             ]
         );
-
-        return $ids;
     }
 
     public function flush(): void
@@ -202,6 +201,6 @@ class RedisStorage implements StorageInterface
             }
             return $result;
         }
-        return $this->prefix . ($prefix ? "$prefix:" : '') . $string;
+        return $this->prefix . ($prefix ? sprintf('%s:', $prefix) : '') . $string;
     }
 }
