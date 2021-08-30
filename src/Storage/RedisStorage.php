@@ -37,7 +37,7 @@ class RedisStorage implements StorageInterface
         $this->prefix = $prefix;
     }
 
-    public function load($id, $includeBody = true): Cache
+    public function load(string $id, bool $includeBody = true): Cache
     {
         $item = $this->loadMultiple([$id], $includeBody)->current();
         if (!$item) {
@@ -47,7 +47,7 @@ class RedisStorage implements StorageInterface
         return $item;
     }
 
-    public function loadMultiple(array $ids, $includeBody = true): \Iterator
+    public function loadMultiple(array $ids, bool $includeBody = true): \Iterator
     {
         if (!$this->redis) {
             return [];
@@ -167,7 +167,7 @@ class RedisStorage implements StorageInterface
         }
     }
 
-    public function getExpired($amount): array
+    public function getExpired(int $amount): array
     {
         if (!$this->redis) {
             return [];
