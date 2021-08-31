@@ -16,10 +16,12 @@ installed using Composer:
  composer require wieni/wmpage_cache_redis
 ```
 
-To enable this cache storage, change the `wmpage_cache.storage` container parameter:
+To enable this cache storage, change the following container parameters:
 ```yaml
 parameters:
     wmpage_cache.storage: wmpage_cache.storage.redis
+    wmpage_cache.invalidator: wmpage_cache_redis.checksum
+    wmpage_cache.checksum: wmpage_cache_redis.checksum
 
     wmpage_cache.redis.prefix: 'wmpage_cache:'
 ```

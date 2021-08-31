@@ -9,5 +9,15 @@ services:
         class: Drupal\wmpage_cache_redis\Storage\RedisStorage
         arguments:
             - '@wmpage_cache.redis.factory'
+            - '@wmpage_cache.checksum'
             - '@wmpage_cache.serializer'
             - '%wmpage_cache.redis.prefix%'
+
+    wmpage_cache_redis.checksum_factory:
+        class: Drupal\wmpage_cache_redis\RedisCacheTagsChecksumClientFactory
+
+    wmpage_cache_redis.checksum:
+        class: Drupal\wmpage_cache_redis\RedisCacheTagsChecksum
+        arguments:
+            - '@wmpage_cache_redis.checksum_factory'
+        tags: [{ name: cache_tags_invalidator }]
