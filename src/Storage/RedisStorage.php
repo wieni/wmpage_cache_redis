@@ -3,8 +3,8 @@
 namespace Drupal\wmpage_cache_redis\Storage;
 
 use Drupal\wmpage_cache\Cache;
-use Drupal\wmpage_cache\CacheSerializerInterface;
 use Drupal\wmpage_cache\Exception\NoSuchCacheEntryException;
+use Drupal\wmpage_cache\CacheSerializerInterface;
 use Drupal\wmpage_cache\Storage\StorageInterface;
 use Drupal\wmpage_cache_redis\RedisClientFactory;
 use Redis;
@@ -15,6 +15,7 @@ class RedisStorage implements StorageInterface
     protected $redis;
     /** @var CacheSerializerInterface */
     protected $serializer;
+    /** @var string */
     protected $prefix;
 
     public function __construct(
@@ -60,7 +61,8 @@ class RedisStorage implements StorageInterface
                 $this->prefix($chunk, $includeBody ? 'body' : '')
             );
 
-            foreach (array_filter($rows) as $row) {
+            foreach (array_filter($rows) as $rowJson) {
+                $row = json_decode($rowJson, true);
                 $item = $this->serializer->denormalize($row);
                 if ($item->getExpiry() > $time) {
                     yield $item;
@@ -81,12 +83,12 @@ class RedisStorage implements StorageInterface
 
         $tx->set(
             $this->prefix($id),
-            $this->serializer->normalize($item, false),
+            json_encode($this->serializer->normalize($item, false)),
             ($item->getExpiry() - $time)
         );
         $tx->set(
             $this->prefix($id, 'body'),
-            $this->serializer->normalize($item, true),
+            json_encode($this->serializer->normalize($item, true)),
             ($item->getExpiry() - $time)
         );
         $tx->zAdd(
